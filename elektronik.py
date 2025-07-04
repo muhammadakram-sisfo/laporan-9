@@ -87,7 +87,7 @@ def hapus_elektronik():
 # menu utama
 def menu():
     while True:
-        print("=== MENU TOKO ELEKTRONIK ===")
+        print("===MENU TOKO ELEKTRONIK===")
         print("1. Tambah Barang Elektronik")
         print("2. Tampilkan Barang")
         print("3. Update Barang")
