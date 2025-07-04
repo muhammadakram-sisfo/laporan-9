@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, create_engine
+from sqlalchemy import Column, Integer, String, Float, create_engine, func
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 # koneksi database
@@ -42,6 +42,17 @@ def tampilkan_elektronik():
         print(f"{b.id}. {b.nama} | Merek: {b.merek} | Tipe: {b.tipe} | "
               f"Harga: {b.harga:,.0f} | Stok: {b.stok}")
     print()
+    
+def total_inventaris():
+    total_stok, total_nilai = session.query(
+        func.sum(Elektronik.stok),
+        func.sum(Elektronik.harga * Elektronik.stok)
+    ).one()
+    total_stok  = total_stok  or 0
+    total_nilai = total_nilai or 0
+    print(f"\nTotal barang: {total_stok:,d} unit")
+    print(f"Total nilai : Rp {total_nilai:,.0f}\n")
+
 
 def update_elektronik():
     tampilkan_elektronik()
